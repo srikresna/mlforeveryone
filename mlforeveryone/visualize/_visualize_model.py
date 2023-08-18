@@ -7,16 +7,18 @@ from sklearn import ensemble, model_selection, metrics, decomposition, linear_mo
 from mpl_toolkits.mplot3d import Axes3D
 
 
-'''
-Decomposes the feture matrix of train and test.
-:parameter
-    :param X_train: array
-    :param X_test: array
-    :param n_features: num - how many dimensions you want
-:return
-    dict with new train and test, and the model 
-'''
+
 def utils_dimensionality_reduction(X_train, X_test, n_features=2):
+    '''
+    Decomposes the feture matrix of train and test.
+    :parameter
+        :param X_train: array
+        :param X_test: array
+        :param n_features: num - how many dimensions you want
+    :return
+        dict with new train and test, and the model 
+    '''    
+    
     model = decomposition.PCA(n_components=n_features)
     X_train = model.fit_transform(X_train)
     X_test = model.transform(X_test)
@@ -24,16 +26,18 @@ def utils_dimensionality_reduction(X_train, X_test, n_features=2):
 
 
 
-'''
-Plots a 2d classification model result.
-:parameter
-    :param X_train: array
-    :param y_train: array
-    :param X_test: array
-    :param y_test: array
-    :param model: model istance (before fitting)
-'''
+
 def plot2d_classif_model(X_train, y_train, X_test, y_test, model=None, annotate=False, figsize=(10,5)):
+    '''
+    Plots a 2d classification model result.
+    :parameter
+        :param X_train: array
+        :param y_train: array
+        :param X_test: array
+        :param y_test: array
+        :param model: model istance (before fitting)
+    '''    
+    
     ## n features > 2d
     if X_train.shape[1] > 2:
         print("--- reducing dimensions to 2 ---")
@@ -63,10 +67,12 @@ def plot2d_classif_model(X_train, y_train, X_test, y_test, model=None, annotate=
     
 
     
-'''
-Plot 3d regression plane.
-'''
+
 def plot3d_regr_model(X_train, y_train, X_test, y_test, scalerY=None, model=None, rotate=(0,0), figsize=(10,5)):
+    '''
+    Plot 3d regression plane.
+    '''    
+    
     ## n features > 2d
     if X_train.shape[1] > 2:
         print("--- reducing dimensions to 3 ---")
@@ -92,10 +98,12 @@ def plot3d_regr_model(X_train, y_train, X_test, y_test, scalerY=None, model=None
 
 
 
-'''
-Extract info for each layer in a keras model.
-'''
+
 def utils_nn_config(model):
+    '''
+    Extract info for each layer in a keras model.
+    '''    
+    
     lst_layers = []
     if "Sequential" in str(model): #-> Sequential doesn't show the input layer
         layer = model.layers[0]
@@ -116,10 +124,12 @@ def utils_nn_config(model):
 
 
 
-'''
-Plot the structure of a keras neural network.
-'''
+
 def visualize_nn(model, description=False, figsize=(10,8)):
+    '''
+    Plot the structure of a keras neural network.
+    ''' 
+
     ## get layers info
     lst_layers = utils_nn_config(model)
     layer_sizes = [layer["out"] for layer in lst_layers]
