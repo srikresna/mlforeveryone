@@ -1,0 +1,1 @@
+from ._geospatial_analysis import plot_map
