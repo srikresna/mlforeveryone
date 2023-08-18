@@ -3,10 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn import ensemble, model_selection, metrics
-import minisom
 import scipy
 from tensorflow.keras import models, layers, backend as K
-
 
 def fit_ml_classif(model, X_train, y_train, X_test, threshold=0.5):
     '''
