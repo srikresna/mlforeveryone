@@ -1,4 +1,4 @@
-import _bivariate_plot as bp
+from mlforeveryone.plot import bivariate_plot as bp
 import pandas as pd
 import numpy as np
 

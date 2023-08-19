@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import shap
 from lime import lime_tabular
+import matplotlib.pyplot as plt
 
 def explainer_shap(model, X_names, X_instance, X_train=None, task="classification", top=10):
     '''

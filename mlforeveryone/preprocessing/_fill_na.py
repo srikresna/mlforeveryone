@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from mlforeveryone.utils import utils_recognize_type
+from mlforeveryone.recognize import utils_recognize_type
 
 def fill_na(dtf, x, value=None):
     '''

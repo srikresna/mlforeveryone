@@ -2,7 +2,7 @@ from mlforeveryone.recognize import utils_recognize_type
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import searborn as sns
+import seaborn as sns
 from mpl_toolkits.mplot3d import Axes3D
 
 
@@ -39,8 +39,10 @@ def cross_distributions(dtf, x1, x2, y, max_cat=20, figsize=(10,5)):
     else:
         ### all num --> 3D scatter plot
         fig = plt.figure(figsize=figsize)
-        ax = fig.gca(projection='3d')
+        ax = fig.add_subplot(111, projection='3d')  # Use add_subplot for 3D axes
         plot3d = ax.scatter(xs=dtf[x1], ys=dtf[x2], zs=dtf[y], c=dtf[y], cmap='inferno', linewidth=0.5)
         fig.colorbar(plot3d, shrink=0.5, aspect=5, label=y)
-        ax.set(xlabel=x1, ylabel=x2, zlabel=y)
+        ax.set_xlabel(x1)
+        ax.set_ylabel(x2)
+        ax.set_zlabel(y)
         plt.show()
