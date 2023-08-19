@@ -6,7 +6,6 @@ from sklearn import ensemble, model_selection, metrics
 import minisom
 from statsmodels.graphics.api import abline_plot
 from tensorflow.keras import models, layers, backend as K
-import utils_plot_keras_training
 
 def fit_ml_regr(model, X_train, y_train, X_test, scalerY=None):
     '''
@@ -81,58 +80,6 @@ def tune_regr_model(X_train, y_train, model_base=None, param_dic=None, scoring="
     plt.show()
     
     return model
-
-
-
-
-def fit_dl_regr(X_train, y_train, X_test, scalerY, model=None, batch_size=32, epochs=100, verbose=0):
-    '''
-    Fits a keras deep/artificial neural network.
-    :parameter
-        :param X_train: array
-        :param y_train: array
-        :param X_test: array
-        :param batch_size: num - keras batch
-        :param epochs: num - keras epochs
-        :param scalerY: scaler object (only for regression)
-    :return
-        model fitted and predictions
-    '''    
-    
-    ## model
-    if model is None:
-        ### define R2 metric for Keras
-        def R2(y, y_hat):
-            ss_res =  K.sum(K.square(y - y_hat)) 
-            ss_tot = K.sum(K.square(y - K.mean(y))) 
-            return ( 1 - ss_res/(ss_tot + K.epsilon()) )
-
-        ### build ann
-        n_features = X_train.shape[1]
-        #### layer input
-        inputs = layers.Input(name="input", shape=(n_features,))
-        #### hidden layer 1
-        h1 = layers.Dense(name="h1", units=int(round((n_features+1)/2)), activation='relu')(inputs)
-        h1 = layers.Dropout(name="drop1", rate=0.2)(h1)
-        #### hidden layer 2
-        h2 = layers.Dense(name="h2", units=int(round((n_features+1)/4)), activation='relu')(h1)
-        h2 = layers.Dropout(name="drop2", rate=0.2)(h2)
-        #### layer output
-        outputs = layers.Dense(name="output", units=1, activation='linear')(h2)
-        model = models.Model(inputs=inputs, outputs=outputs, name="DeepNN")
-        model.compile(optimizer='adam', loss='mean_absolute_error', metrics=[R2])
-        print(model.summary())
-
-    ## train
-    training = model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs, shuffle=True, verbose=verbose, validation_split=0.3)
-    if epochs > 1:
-        utils_plot_keras_training(training)
-    
-    ## test
-    predicted = training.model.predict(X_test)
-    if scalerY is not None:
-        predicted = scalerY.inverse_transform(predicted)
-    return training.model, predicted.reshape(-1)
 
 
 
