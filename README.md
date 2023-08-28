@@ -1,7 +1,7 @@
 
 # MLFOREVERYONE
 
-![image](https://github.com/srikresna/mlforeveryone/assets/28501206/790fb4f7-d253-498c-a402-909e91b5e91f)
+![image](https://github.com/srikresna/mlforeveryone/assets/28501206/ddbc5601-4aa5-4e45-9f71-30050c486ddc)
 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
