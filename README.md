@@ -1,9 +1,5 @@
 
 # MLFOREVERYONE
-
-![image](https://github.com/srikresna/mlforeveryone/assets/28501206/ddbc5601-4aa5-4e45-9f71-30050c486ddc)
-
-
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 This project aims to provide assistance to beginners who are just learning machine learning by providing a comprehensive tool. This tool allows users to gain more information from data, process data, and create machine learning models efficiently.
